@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_alarm"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_bar_height"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Cancel" />
+        <!--<view-->
+        <!--android:layout_width="1dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/title_bar_divider"/>-->
+        <TextView
+            android:id="@+id/txt_save"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Save" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/title_bar_divider" />
+
+    <LinearLayout
+        android:id="@+id/layout_date"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="TODAY" />
+    </LinearLayout>
+
+</LinearLayout>
