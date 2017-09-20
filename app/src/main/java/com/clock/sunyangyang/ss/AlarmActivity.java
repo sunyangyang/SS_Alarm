@@ -1,13 +1,16 @@
 package com.clock.sunyangyang.ss;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import com.clock.sunyangyang.ss.View.CommonPopView;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -23,7 +26,7 @@ public class AlarmActivity extends BaseActivity implements View.OnClickListener 
     private TextView mTxtDate;
     private View mView;
     private MaterialCalendarView mCalendarView;
-    private DateFormat mDateFormat = new SimpleDateFormat("d LLLL", Locale.getDefault());
+    private DateFormat mDateFormat = new SimpleDateFormat("yyyy dd LLLL", Locale.getDefault());
     private Date mDate;
     private final Date mDateToday = new Date();
     @Override
@@ -34,18 +37,26 @@ public class AlarmActivity extends BaseActivity implements View.OnClickListener 
         mCalendarView = (MaterialCalendarView) mView.findViewById(R.id.calendar_view);
         mTxtDate = (TextView) findViewById(R.id.txt_date);
         findViewById(R.id.layout_date).setOnClickListener(this);
-        mDate = new Date();
-        mTxtDate.setText(String.valueOf(mDateFormat.format(mDateToday)));
+        mTxtDate.setText(String.valueOf(mDateFormat.format(mDateToday)).substring(5));
         setCalendarListener();
     }
 
     private void setCalendarListener() {
         mCalendarView.setSelectedDate(mDateToday);
-        mCalendarView.setBackgroundColor(0xffeeeeee);
+//        mCalendarView.setBackgroundColor(0xffeeeeee);
         mCalendarView.state().edit()
                 .setMinimumDate(mDateToday)
                 .commit();
-        mCalendarView.getCurrentDate();
+        mCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(MaterialCalendarView widget, CalendarDay date, boolean selected) {
+                Log.e("XXXXX", "widget = " + widget.getSelectedDate() + ", date = " + date + ", se= " + selected);
+                mDate = date.getDate();
+                String value = String.valueOf(mDateFormat.format(mDate)).substring(5);
+                mTxtDate.setText(value);
+//                Log.e("XXXXX", "value = " + value);
+            }
+        });
     }
 
     @Override
