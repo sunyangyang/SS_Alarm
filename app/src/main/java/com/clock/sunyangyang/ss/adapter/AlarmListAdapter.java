@@ -158,6 +158,10 @@ public class AlarmListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     };
 
+    public AlarmBean getItemObject(int position) {
+        return mList.get(position);
+    }
+
     public interface StatusChange {
         void changed(AlarmBean bean);
     }

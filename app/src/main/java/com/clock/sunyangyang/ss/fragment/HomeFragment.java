@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,7 @@ import java.util.Random;
  */
 
 public class HomeFragment extends Fragment implements AlarmListAdapter.StatusChange, View.OnClickListener {
-
+    private final int REQUEST_ALARM = 0;
     private Activity mContext;
     private SwipeMenuRecyclerView mSwipeRecyclerView;
     private ImageView mImgAdd;
@@ -129,7 +130,12 @@ public class HomeFragment extends Fragment implements AlarmListAdapter.StatusCha
     private SwipeItemClickListener mItemClickListener = new SwipeItemClickListener() {
         @Override
         public void onItemClick(View itemView, int position) {
-            Toast.makeText(getContext(), "第" + position + "个", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "第" + position + "个", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(mContext, AlarmActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("bean", mAdapter.getItemObject(position));
+            intent.putExtra("alarm", bundle);
+            startActivityForResult(intent, REQUEST_ALARM);
         }
     };
 
@@ -151,5 +157,11 @@ public class HomeFragment extends Fragment implements AlarmListAdapter.StatusCha
                 startActivity(intent);
                 break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.e("XXXXX", "resultCode = " + resultCode);
     }
 }

@@ -21,5 +21,7 @@
         <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
         <item name="android:windowExitAnimation">@anim/pop_out_anim</item>
     </style>
-
+    <style name="timePicker" parent="AlertDialog.AppCompat.Light">
+    </style>
+    <!--android:theme="@AppTheme:Theme.AppCompat.Light"-->
 </resources>
