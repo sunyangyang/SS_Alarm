@@ -41,7 +41,11 @@ public class AlarmBean implements Serializable {
         stringBuilder.append(thu == 0 ? "" : Constants.WEEK_DAY[4] + " ");
         stringBuilder.append(fri == 0 ? "" : Constants.WEEK_DAY[5] + " ");
         stringBuilder.append(sat == 0 ? "" : Constants.WEEK_DAY[6] + " ");
-        String repeatDay = stringBuilder.substring(0, stringBuilder.length() - 1);
+        String repeatDay = "Never";
+        if (stringBuilder.length() > 0) {
+            repeatDay = stringBuilder.substring(0, stringBuilder.length() - 1);
+        }
+
         return repeatDay;
     }
 }
